@@ -22,9 +22,5 @@ runs:
       shell: bash
       run: |
         # Check
-        args=''
-        if [[ "${{ inputs.extra-args }}" ]]; then
-           args+=' --extra-arg=${{ inputs.extra-args }}'
-        fi
-        $GITHUB_ACTION_PATH/runchecks.sh $args -- ${{ inputs.after-args }} 
+        $GITHUB_ACTION_PATH/runchecks.sh --extra-arg=${{ inputs.extra-args }} -- ${{ inputs.after-args }} 
 
