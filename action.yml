@@ -25,6 +25,5 @@ runs:
         if [[ ${{ inputs.extra-args }} ]]; then
            args+=' --extra-arg="${{ inputs.extra-args }}"'
         fi
-        ls -la
-        ./runchecks.sh $args -- ${{ inputs.after-args }} 
+        ${{ github.action_path }}/runchecks.sh $args -- ${{ inputs.after-args }} 
 
