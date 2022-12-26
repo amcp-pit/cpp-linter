@@ -24,9 +24,8 @@ runs:
         # Check
         args=''
         if [[ ${{ inputs.extra-args }} ]]; then
-           args+=' --extra-arg="${{ inputs.extra-args }}"'
+           args+=' --extra-arg=${{ inputs.extra-args }}'
         fi
-        echo $args
-        # chmod +x $GITHUB_ACTION_PATH/runchecks.sh
+        chmod +x $GITHUB_ACTION_PATH/runchecks.sh
         $GITHUB_ACTION_PATH/runchecks.sh $args -- ${{ inputs.after-args }} 
 
