@@ -21,9 +21,11 @@ runs:
       id: cpp-linter
       shell: bash
       run: |
+        # Check
         args=''
         if [[ ${{ inputs.extra-args }} ]]; then
            args+=' --extra-arg="${{ inputs.extra-args }}"'
         fi
-        ${{ github.action_path }}/runchecks.sh $args -- ${{ inputs.after-args }} 
+        chmod +x $GITHUB_ACTION_PATH/runchecks.sh
+        $GITHUB_ACTION_PATH/runchecks.sh $args -- ${{ inputs.after-args }} 
 
