@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [[ -z "$GITHUB_TOKEN" ]]; then
-	echo "The GITHUB_TOKEN is required."
-	exit 1
-fi
+#if [[ -z "$GITHUB_TOKEN" ]]; then
+#	echo "The GITHUB_TOKEN is required."
+#	exit 1
+#fi
 
 clang-tidy ./*.cpp --format-style=file --quiet --export-fixes=clang-tidy-output.yml $*
 
