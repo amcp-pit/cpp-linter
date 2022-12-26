@@ -21,7 +21,9 @@ runs:
       id: cpp-linter
       shell: bash
       run: |
-        runchecks.sh \
-          --extra-arg="${{ inputs.extra-args }}" \
-          -- ${{ inputs.after-args }} \
+        args=''
+        if [[ ${{ inputs.extra-args }} ]]; then
+           args+=' --extra-arg="${{ inputs.extra-args }}"'
+        fi
+        runchecks.sh $args -- ${{ inputs.after-args }} 
 
