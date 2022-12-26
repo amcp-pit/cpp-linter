@@ -1,0 +1,27 @@
+name: C++ Linter
+description: Lint C/C++ code with clang-tidy.
+author: AMCP
+inputs:
+  extra-args:
+    description: A string of extra arguments passed to clang-tidy for use as compiler arguments. Multiple arguments are separated by spaces so the argument name and value should use an '=' sign instead of a space.
+    required: false
+    default: ""
+  after-args:
+    description: A string of arguments passed to clang-tidy after '--'. 
+    required: false
+    default: "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+outputs:
+  checks-failed:
+    description: An integer that can be used as a boolean value to indicate if all checks failed.
+    value: ${{ steps.cpp-linter.outputs.checks-failed }}
+runs:
+  using: "composite"
+  steps:
+    - name: Run cpp-linter
+      id: cpp-linter
+      shell: bash
+      run: |
+        runchecks.sh \
+          --extra-arg="${{ inputs.extra-args }}" \
+          -- ${{ inputs.after-args }} \
+
