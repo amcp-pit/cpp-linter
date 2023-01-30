@@ -2,6 +2,10 @@ name: C++ Linter
 description: Lint C/C++ code with clang-tidy.
 author: AMCP
 inputs:
+  extra-args-before:
+    description: A string of extra arguments passed to clang-tidy for use as compiler arguments. Multiple arguments are separated by spaces so the argument name and value should use an '=' sign instead of a space.
+    required: false
+    default: ""
   extra-args:
     description: A string of extra arguments passed to clang-tidy for use as compiler arguments. Multiple arguments are separated by spaces so the argument name and value should use an '=' sign instead of a space.
     required: false
@@ -22,5 +26,5 @@ runs:
       shell: bash
       run: |
         # Check
-        $GITHUB_ACTION_PATH/runchecks.sh --extra-arg=${{ inputs.extra-args }} -- ${{ inputs.after-args }} 
+        $GITHUB_ACTION_PATH/runchecks.sh --extra-arg-before=${{ inputs.extra-args-before }} --extra-arg=${{ inputs.extra-args }} -- ${{ inputs.after-args }} 
 
